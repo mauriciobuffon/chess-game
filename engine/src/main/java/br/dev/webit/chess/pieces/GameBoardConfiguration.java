@@ -19,14 +19,14 @@ public class GameBoardConfiguration implements BoardConfiguration {
         tiles.put(TileCoordinate.A1, null);
         // left white knight
         tiles.put(TileCoordinate.B1, new Knight(Alliance.WHITE));
-        // TODO: left white bishop
-        tiles.put(TileCoordinate.C1, null);
+        // left white bishop
+        tiles.put(TileCoordinate.C1, new Bishop(Alliance.WHITE));
         // TODO: white queen
         tiles.put(TileCoordinate.D1, null);
         // TODO: white king
         tiles.put(TileCoordinate.E1, null);
-        // TODO: right white bishop
-        tiles.put(TileCoordinate.F1, null);
+        // right white bishop
+        tiles.put(TileCoordinate.F1, new Bishop(Alliance.WHITE));
         // right white knight
         tiles.put(TileCoordinate.G1, new Knight(Alliance.WHITE));
         // TODO: right white rook
@@ -50,14 +50,14 @@ public class GameBoardConfiguration implements BoardConfiguration {
         tiles.put(TileCoordinate.A8, null);
         // right black knight
         tiles.put(TileCoordinate.B8, new Knight(Alliance.BLACK));
-        // TODO: right black bishop
-        tiles.put(TileCoordinate.C8, null);
+        // right black bishop
+        tiles.put(TileCoordinate.C8, new Bishop(Alliance.BLACK));
         // TODO: black queen
         tiles.put(TileCoordinate.D8, null);
         // TODO: black king
         tiles.put(TileCoordinate.E8, null);
-        // TODO: left black bishop
-        tiles.put(TileCoordinate.F8, null);
+        // left black bishop
+        tiles.put(TileCoordinate.F8, new Bishop(Alliance.BLACK));
         // left black knight
         tiles.put(TileCoordinate.G8, new Knight(Alliance.BLACK));
         // TODO: left black rook
