@@ -1,0 +1,21 @@
+# maven
+target/
+.flattened-pom.xml
+
+# netbeans
+nb-configuration.xml
+nbproject/
+
+# eclipse
+.classpath
+.project
+.settings/
+
+# vs code
+.classpath
+.project
+.settings/
+.vscode/
+.factorypath
+
+# specific files

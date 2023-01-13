@@ -1,0 +1,2 @@
+module webit.chess.engine {
+}
