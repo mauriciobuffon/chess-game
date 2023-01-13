@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import br.dev.webit.chess.board.Alliance;
@@ -26,8 +27,9 @@ public class KnightTest {
             "36, 8", "37, 8", "38, 6", "39, 4", "40, 4", "41, 6", "42, 8", "43, 8", "44, 8", "45, 8", "46, 6", "47, 4",
             "48, 3", "49, 4", "50, 6", "51, 6", "52, 6", "53, 6", "54, 4", "55, 3", "56, 2", "57, 3", "58, 4", "59, 4",
             "60, 4", "61, 4", "62, 3", "63, 2" })
-    public void numberOfLegalMovesPerTile(int coordinate, int size) {
-        TileCoordinate tileCoordinate = assertDoesNotThrow(() -> TileCoordinate.of(coordinate));
+    public void numberOfLegalMovesPerTile(
+            @ConvertWith(TileCoordinateConverter.class) TileCoordinate tileCoordinate,
+            int size) {
         Knight knight = assertDoesNotThrow(() -> new Knight(Alliance.WHITE));
         BoardConfiguration config = assertDoesNotThrow(() -> (BoardConfiguration) () -> Map.of(tileCoordinate, knight));
         Board board = assertDoesNotThrow(() -> new Board(config));

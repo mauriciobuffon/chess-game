@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import br.dev.webit.chess.board.Alliance;
@@ -26,8 +27,9 @@ public class BishopTest {
             "34, 11", "35, 13", "36, 13", "37, 11", "38, 9", "39, 7", "40, 7", "41, 9", "42, 11", "43, 11", "44, 11",
             "45, 11", "46, 9", "47, 7", "48, 7", "49, 9", "50, 9", "51, 9", "52, 9", "53, 9", "54, 9", "55, 7", "56, 7",
             "57, 7", "58, 7", "59, 7", "60, 7", "61, 7", "62, 7", "63, 7" })
-    public void numberOfLegalMovesPerTile(int coordinate, int size) {
-        TileCoordinate tileCoordinate = assertDoesNotThrow(() -> TileCoordinate.of(coordinate));
+    public void numberOfLegalMovesPerTile(
+            @ConvertWith(TileCoordinateConverter.class) TileCoordinate tileCoordinate,
+            int size) {
         Bishop bishop = new Bishop(Alliance.WHITE);
         BoardConfiguration config = assertDoesNotThrow(() -> (BoardConfiguration) () -> Map.of(tileCoordinate, bishop));
         Board board = assertDoesNotThrow(() -> new Board(config));

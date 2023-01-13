@@ -15,8 +15,8 @@ public class GameBoardConfiguration implements BoardConfiguration {
     public Map<TileCoordinate, Piece> values() {
         Map<TileCoordinate, Piece> tiles = new HashMap<>();
 
-        // TODO: left white rook
-        tiles.put(TileCoordinate.A1, null);
+        // left white rook
+        tiles.put(TileCoordinate.A1, new Rook(Alliance.WHITE));
         // left white knight
         tiles.put(TileCoordinate.B1, new Knight(Alliance.WHITE));
         // left white bishop
@@ -29,8 +29,8 @@ public class GameBoardConfiguration implements BoardConfiguration {
         tiles.put(TileCoordinate.F1, new Bishop(Alliance.WHITE));
         // right white knight
         tiles.put(TileCoordinate.G1, new Knight(Alliance.WHITE));
-        // TODO: right white rook
-        tiles.put(TileCoordinate.H1, null);
+        // right white rook
+        tiles.put(TileCoordinate.H1, new Rook(Alliance.WHITE));
 
         try {
             // TODO: white pawns
@@ -46,8 +46,8 @@ public class GameBoardConfiguration implements BoardConfiguration {
             throw new RuntimeException(ex);
         }
 
-        // TODO: right black rook
-        tiles.put(TileCoordinate.A8, null);
+        // right black rook
+        tiles.put(TileCoordinate.A8, new Rook(Alliance.BLACK));
         // right black knight
         tiles.put(TileCoordinate.B8, new Knight(Alliance.BLACK));
         // right black bishop
@@ -60,8 +60,8 @@ public class GameBoardConfiguration implements BoardConfiguration {
         tiles.put(TileCoordinate.F8, new Bishop(Alliance.BLACK));
         // left black knight
         tiles.put(TileCoordinate.G8, new Knight(Alliance.BLACK));
-        // TODO: left black rook
-        tiles.put(TileCoordinate.H8, null);
+        // left black rook
+        tiles.put(TileCoordinate.H8, new Rook(Alliance.BLACK));
 
         return tiles;
     }
