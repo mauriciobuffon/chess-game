@@ -33,14 +33,14 @@ public class GameBoardConfiguration implements BoardConfiguration {
         tiles.put(TileCoordinate.H1, new Rook(Alliance.WHITE));
 
         try {
-            // TODO: white pawns
+            // white pawns
             for (int i = 8; i < 16; i++) {
-                tiles.put(TileCoordinate.of(i), null);
+                tiles.put(TileCoordinate.of(i), new Pawn(Alliance.WHITE));
             }
 
-            // TODO: black pawns
+            // black pawns
             for (int i = 48; i < 56; i++) {
-                tiles.put(TileCoordinate.of(i), null);
+                tiles.put(TileCoordinate.of(i), new Pawn(Alliance.BLACK));
             }
         } catch (InvalidTileCoordinateException ex) {
             throw new RuntimeException(ex);

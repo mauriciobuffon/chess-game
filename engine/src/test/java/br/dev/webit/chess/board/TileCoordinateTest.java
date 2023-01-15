@@ -45,8 +45,12 @@ public class TileCoordinateTest {
         assertNotNull(exception);
     }
 
+    static IntStream provideAllCoordinates() {
+        return IntStream.range(0, 64);
+    }
+
     static Stream<Arguments> provideMinimumInvalidMoveCommandsPerCoordinate() {
-        return provideAllValidCoordinates().boxed().flatMap(coordinate -> {
+        return provideAllCoordinates().boxed().flatMap(coordinate -> {
             final int coordinateX = coordinate % 8;
             final int coordinateY = coordinate / 8;
 
@@ -61,10 +65,6 @@ public class TileCoordinateTest {
                 return Arguments.of(coordinate, p[0], p[1]);
             });
         });
-    }
-
-    static IntStream provideAllValidCoordinates() {
-        return IntStream.range(0, 64);
     }
 
     static IntStream provideSomeInvalidCoordinates() {
