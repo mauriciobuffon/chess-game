@@ -45,7 +45,7 @@ public class TileCoordinateTest {
         assertNotNull(exception);
     }
 
-    private static Stream<Arguments> provideMinimumInvalidMoveCommandsPerCoordinate() {
+    static Stream<Arguments> provideMinimumInvalidMoveCommandsPerCoordinate() {
         return provideAllValidCoordinates().boxed().flatMap(coordinate -> {
             final int coordinateX = coordinate % 8;
             final int coordinateY = coordinate / 8;
@@ -63,17 +63,17 @@ public class TileCoordinateTest {
         });
     }
 
-    private static IntStream provideAllValidCoordinates() {
+    static IntStream provideAllValidCoordinates() {
         return IntStream.range(0, 64);
     }
 
-    private static IntStream provideSomeInvalidCoordinates() {
+    static IntStream provideSomeInvalidCoordinates() {
         return IntStream.concat(
                 random.ints(Byte.MAX_VALUE, Integer.MIN_VALUE, 0),
                 random.ints(Byte.MAX_VALUE, 64, Integer.MAX_VALUE));
     }
 
-    private static Stream<Arguments> provideStringRepresentationPerCoordinate() {
+    static Stream<Arguments> provideStringRepresentationPerCoordinate() {
         return Stream.of(
                 Arguments.of(0, "a1"), Arguments.of(1, "b1"), Arguments.of(2, "c1"), Arguments.of(3, "d1"),
                 Arguments.of(4, "e1"), Arguments.of(5, "f1"), Arguments.of(6, "g1"), Arguments.of(7, "h1"),

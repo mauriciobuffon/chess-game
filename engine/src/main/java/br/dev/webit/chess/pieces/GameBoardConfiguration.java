@@ -23,8 +23,8 @@ public class GameBoardConfiguration implements BoardConfiguration {
         tiles.put(TileCoordinate.C1, new Bishop(Alliance.WHITE));
         // white queen
         tiles.put(TileCoordinate.D1, new Queen(Alliance.WHITE));
-        // TODO: white king
-        tiles.put(TileCoordinate.E1, null);
+        // white king
+        tiles.put(TileCoordinate.E1, new King(Alliance.WHITE));
         // right white bishop
         tiles.put(TileCoordinate.F1, new Bishop(Alliance.WHITE));
         // right white knight
@@ -54,8 +54,8 @@ public class GameBoardConfiguration implements BoardConfiguration {
         tiles.put(TileCoordinate.C8, new Bishop(Alliance.BLACK));
         // black queen
         tiles.put(TileCoordinate.D8, new Queen(Alliance.BLACK));
-        // TODO: black king
-        tiles.put(TileCoordinate.E8, null);
+        // black king
+        tiles.put(TileCoordinate.E8, new King(Alliance.BLACK));
         // left black bishop
         tiles.put(TileCoordinate.F8, new Bishop(Alliance.BLACK));
         // left black knight

@@ -1,7 +1,7 @@
 package br.dev.webit.chess.pieces;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Collection;
 import java.util.Map;
@@ -34,6 +34,6 @@ public class BishopTest {
         BoardConfiguration config = assertDoesNotThrow(() -> (BoardConfiguration) () -> Map.of(tileCoordinate, bishop));
         Board board = assertDoesNotThrow(() -> new Board(config));
         Collection<Move> moves = assertDoesNotThrow(() -> bishop.calculateLegalMoves(board));
-        assertTrue(moves.size() == size);
+        assertEquals(size, moves.size());
     }
 }

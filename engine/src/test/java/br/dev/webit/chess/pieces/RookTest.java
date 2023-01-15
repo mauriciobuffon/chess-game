@@ -1,7 +1,7 @@
 package br.dev.webit.chess.pieces;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Collection;
 import java.util.Map;
@@ -28,7 +28,7 @@ public class RookTest {
         BoardConfiguration config = assertDoesNotThrow(() -> (BoardConfiguration) () -> Map.of(tileCoordinate, rook));
         Board board = assertDoesNotThrow(() -> new Board(config));
         Collection<Move> moves = assertDoesNotThrow(() -> rook.calculateLegalMoves(board));
-        assertTrue(moves.size() == 14);
+        assertEquals(14, moves.size());
     }
 
     static IntStream provideAllCoordinates() {
