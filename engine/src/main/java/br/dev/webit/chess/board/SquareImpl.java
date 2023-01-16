@@ -3,12 +3,12 @@ package br.dev.webit.chess.board;
 import java.util.Objects;
 import java.util.Optional;
 
-class TileImpl implements Tile {
+class SquareImpl implements Square {
 
     private final TileCoordinate coordinate;
     private Piece piece;
 
-    TileImpl(TileCoordinate tileCoordinate, Piece pieceOnTile) {
+    SquareImpl(TileCoordinate tileCoordinate, Piece pieceOnTile) {
         this.coordinate = Objects.requireNonNull(tileCoordinate);
         this.piece = pieceOnTile;
     }
@@ -24,8 +24,7 @@ class TileImpl implements Tile {
     }
 
     // TODO: work in progress
-    // throw an exception when the current piece has the same alliance of the one in
-    // parameter
+    // throw an exception when the current piece has the same color
     void setPiece(Piece aPiece) {
         this.piece = aPiece;
     }
@@ -48,7 +47,7 @@ class TileImpl implements Tile {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final TileImpl other = (TileImpl) obj;
+        final SquareImpl other = (SquareImpl) obj;
         return Objects.equals(this.coordinate, other.coordinate);
     }
 }

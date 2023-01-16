@@ -11,7 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import br.dev.webit.chess.board.Alliance;
+import br.dev.webit.chess.board.Color;
 import br.dev.webit.chess.board.Board;
 import br.dev.webit.chess.board.BoardConfiguration;
 import br.dev.webit.chess.board.Move;
@@ -28,9 +28,8 @@ public class BishopTest {
             "45, 11", "46, 9", "47, 7", "48, 7", "49, 9", "50, 9", "51, 9", "52, 9", "53, 9", "54, 9", "55, 7", "56, 7",
             "57, 7", "58, 7", "59, 7", "60, 7", "61, 7", "62, 7", "63, 7" })
     public void numberOfLegalMovesPerTile(
-            @ConvertWith(TileCoordinateConverter.class) TileCoordinate tileCoordinate,
-            int size) {
-        Bishop bishop = new Bishop(Alliance.WHITE);
+            @ConvertWith(TileCoordinateConverter.class) TileCoordinate tileCoordinate, int size) {
+        Bishop bishop = new Bishop(Color.WHITE);
         BoardConfiguration config = assertDoesNotThrow(() -> (BoardConfiguration) () -> Map.of(tileCoordinate, bishop));
         Board board = assertDoesNotThrow(() -> new Board(config));
         Collection<Move> moves = assertDoesNotThrow(() -> bishop.calculateLegalMoves(board));

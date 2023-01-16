@@ -11,7 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import br.dev.webit.chess.board.Alliance;
+import br.dev.webit.chess.board.Color;
 import br.dev.webit.chess.board.Board;
 import br.dev.webit.chess.board.BoardConfiguration;
 import br.dev.webit.chess.board.Move;
@@ -28,9 +28,8 @@ public class KingTest {
             "48, 5", "49, 8", "50, 8", "51, 8", "52, 8", "53, 8", "54, 8", "55, 5", "56, 3", "57, 5", "58, 5", "59, 5",
             "60, 5", "61, 5", "62, 5", "63, 3" })
     public void numberOfLegalMovesPerTile(
-            @ConvertWith(TileCoordinateConverter.class) TileCoordinate tileCoordinate,
-            int size) {
-        King king = new King(Alliance.WHITE);
+            @ConvertWith(TileCoordinateConverter.class) TileCoordinate tileCoordinate, int size) {
+        King king = new King(Color.WHITE);
         BoardConfiguration config = assertDoesNotThrow(() -> (BoardConfiguration) () -> Map.of(tileCoordinate, king));
         Board board = assertDoesNotThrow(() -> new Board(config));
         Collection<Move> moves = assertDoesNotThrow(() -> king.calculateLegalMoves(board));

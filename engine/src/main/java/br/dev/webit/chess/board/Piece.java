@@ -5,15 +5,15 @@ import java.util.Objects;
 
 public abstract class Piece {
 
-    private final Alliance alliance;
+    private final Color color;
 
-    protected Piece(Alliance pieceAlliance) {
-        this.alliance = Objects.requireNonNull(pieceAlliance);
+    protected Piece(Color pieceColor) {
+        this.color = Objects.requireNonNull(pieceColor);
     }
 
     public abstract Collection<Move> calculateLegalMoves(Board board);
 
-    public final Alliance getAlliance() {
-        return alliance;
+    public final Color getColor() {
+        return color;
     }
 }

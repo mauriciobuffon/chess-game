@@ -2,7 +2,7 @@ package br.dev.webit.chess.board;
 
 import java.util.Optional;
 
-public interface Tile {
+public interface Square {
 
     TileCoordinate getCoordinate();
 
@@ -22,7 +22,7 @@ public interface Tile {
             case "f2":
             case "g2":
             case "h2":
-                return Alliance.WHITE.equals(getPiece().get().getAlliance());
+                return Color.WHITE.equals(getPiece().get().getColor());
             case "a7":
             case "b7":
             case "c7":
@@ -31,7 +31,7 @@ public interface Tile {
             case "f7":
             case "g7":
             case "h7":
-                return Alliance.BLACK.equals(getPiece().get().getAlliance());
+                return Color.BLACK.equals(getPiece().get().getColor());
             default:
                 return false;
         }

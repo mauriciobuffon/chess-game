@@ -11,7 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import br.dev.webit.chess.board.Alliance;
+import br.dev.webit.chess.board.Color;
 import br.dev.webit.chess.board.Board;
 import br.dev.webit.chess.board.BoardConfiguration;
 import br.dev.webit.chess.board.Move;
@@ -29,9 +29,8 @@ public class QueenTest {
             "51, 23", "52, 23", "53, 23", "54, 23", "55, 21", "56, 21", "57, 21", "58, 21", "59, 21", "60, 21",
             "61, 21", "62, 21", "63, 21" })
     public void numberOfLegalMovesPerTile(
-            @ConvertWith(TileCoordinateConverter.class) TileCoordinate tileCoordinate,
-            int size) {
-        Queen queen = new Queen(Alliance.WHITE);
+            @ConvertWith(TileCoordinateConverter.class) TileCoordinate tileCoordinate, int size) {
+        Queen queen = new Queen(Color.WHITE);
         BoardConfiguration config = assertDoesNotThrow(() -> (BoardConfiguration) () -> Map.of(tileCoordinate, queen));
         Board board = assertDoesNotThrow(() -> new Board(config));
         Collection<Move> moves = assertDoesNotThrow(() -> queen.calculateLegalMoves(board));

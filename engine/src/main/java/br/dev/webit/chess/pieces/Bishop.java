@@ -5,42 +5,42 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import br.dev.webit.chess.board.Alliance;
 import br.dev.webit.chess.board.Board;
+import br.dev.webit.chess.board.Color;
 import br.dev.webit.chess.board.InvalidTileCoordinateException;
 import br.dev.webit.chess.board.Move;
 import br.dev.webit.chess.board.Piece;
-import br.dev.webit.chess.board.Tile;
+import br.dev.webit.chess.board.Square;
 import br.dev.webit.chess.board.TileCoordinate;
 
 public final class Bishop extends Piece {
 
     private static final int[][] POSSIBLE_MOVES = { { -1, -1 }, { -1, +1 }, { +1, -1 }, { +1, +1 } };
 
-    public Bishop(Alliance pieceAlliance) {
-        super(pieceAlliance);
+    public Bishop(Color pieceColor) {
+        super(pieceColor);
     }
 
     @Override
     public Collection<Move> calculateLegalMoves(Board board) {
         Set<Move> legalMoves = new HashSet<>();
 
+        final Square tile = board.getTile(this);
+        final TileCoordinate origin = tile.getCoordinate();
+
         for (int[] offset : POSSIBLE_MOVES) {
             for (int i = 1; i < 8; i++) {
                 try {
-                    Tile tile = board.getTile(this);
-                    TileCoordinate origin = tile.getCoordinate();
-                    TileCoordinate candidate = origin.move(offset[0] * i, offset[1] * i);
-
-                    Optional<Piece> piece = board.getTile(candidate).getPiece();
+                    TileCoordinate destination = origin.move(offset[0] * i, offset[1] * i);
+                    Optional<Piece> piece = board.getTile(destination).getPiece();
 
                     if (piece.isPresent()) {
-                        if (!this.getAlliance().equals(piece.get().getAlliance())) {
-                            legalMoves.add(new Move(this, origin, candidate));
+                        if (!this.getColor().equals(piece.get().getColor())) {
+                            legalMoves.add(new Move(this, destination));
                         }
                         break;
                     } else {
-                        legalMoves.add(new Move(this, origin, candidate));
+                        legalMoves.add(new Move(this, destination));
                     }
                 } catch (InvalidTileCoordinateException ex) {
                     break;

@@ -1,6 +1,6 @@
 package br.dev.webit.chess.board;
 
-public enum Alliance {
+public enum Color {
 
     WHITE,
     BLACK;
