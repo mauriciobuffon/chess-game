@@ -8,9 +8,9 @@ class SquareImpl implements Square {
     private final TileCoordinate coordinate;
     private Piece piece;
 
-    SquareImpl(TileCoordinate tileCoordinate, Piece pieceOnTile) {
-        this.coordinate = Objects.requireNonNull(tileCoordinate);
-        this.piece = pieceOnTile;
+    SquareImpl(TileCoordinate coordinate, Piece pieceOnSquare) {
+        this.coordinate = Objects.requireNonNull(coordinate);
+        this.piece = pieceOnSquare;
     }
 
     @Override

@@ -10,14 +10,11 @@ import br.dev.webit.chess.board.Color;
 import br.dev.webit.chess.board.InvalidTileCoordinateException;
 import br.dev.webit.chess.board.Move;
 import br.dev.webit.chess.board.Piece;
-import br.dev.webit.chess.board.Square;
 import br.dev.webit.chess.board.TileCoordinate;
 
 public class Queen extends Piece {
 
-    private static final int[][] POSSIBLE_MOVES = {
-            { -1, -1 }, { -1, 0 }, { -1, +1 }, { 0, -1 },
-            { 0, +1 }, { +1, -1 }, { +1, 0 }, { +1, +1 } };
+    private static final int[] OFFSETS = { -17, -16, -15, -1, +1, +15, +16, +17 };
 
     public Queen(Color pieceColor) {
         super(pieceColor);
@@ -27,14 +24,13 @@ public class Queen extends Piece {
     public Collection<Move> calculateLegalMoves(Board board) {
         Set<Move> legalMoves = new HashSet<>();
 
-        final Square tile = board.getTile(this);
-        final TileCoordinate origin = tile.getCoordinate();
+        final TileCoordinate origin = board.getCoordinate(this);
 
-        for (int[] offset : POSSIBLE_MOVES) {
+        for (int offset : OFFSETS) {
             for (int i = 1; i < 8; i++) {
                 try {
-                    TileCoordinate destination = origin.move(offset[0] * i, offset[1] * i);
-                    Optional<Piece> piece = board.getTile(destination).getPiece();
+                    TileCoordinate destination = origin.move(offset * i);
+                    Optional<Piece> piece = board.getSquare(destination).getPiece();
 
                     if (piece.isPresent()) {
                         if (!this.getColor().equals(piece.get().getColor())) {

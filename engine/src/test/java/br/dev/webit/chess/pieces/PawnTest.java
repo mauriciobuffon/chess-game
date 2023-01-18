@@ -21,22 +21,22 @@ public class PawnTest {
 
     @DisplayName("Number of legal moves per tile")
     @ParameterizedTest(name = "[{index}] The {1} pawn has {2} legal moves on the tile coordinate {0}")
-    @CsvSource({ "8, BLACK, 1", "8, WHITE, 2", "9, BLACK, 1", "9, WHITE, 2", "10, BLACK, 1", "10, WHITE, 2",
-            "11, BLACK, 1", "11, WHITE, 2", "12, BLACK, 1", "12, WHITE, 2", "13, BLACK, 1", "13, WHITE, 2",
-            "14, BLACK, 1", "14, WHITE, 2", "15, BLACK, 1", "15, WHITE, 2", "16, BLACK, 1", "16, WHITE, 1",
-            "17, BLACK, 1", "17, WHITE, 1", "18, BLACK, 1", "18, WHITE, 1", "19, BLACK, 1", "19, WHITE, 1",
-            "20, BLACK, 1", "20, WHITE, 1", "21, BLACK, 1", "21, WHITE, 1", "22, BLACK, 1", "22, WHITE, 1",
-            "23, BLACK, 1", "23, WHITE, 1", "24, BLACK, 1", "24, WHITE, 1", "25, BLACK, 1", "25, WHITE, 1",
-            "26, BLACK, 1", "26, WHITE, 1", "27, BLACK, 1", "27, WHITE, 1", "28, BLACK, 1", "28, WHITE, 1",
-            "29, BLACK, 1", "29, WHITE, 1", "30, BLACK, 1", "30, WHITE, 1", "31, BLACK, 1", "31, WHITE, 1",
-            "32, BLACK, 1", "32, WHITE, 1", "33, BLACK, 1", "33, WHITE, 1", "34, BLACK, 1", "34, WHITE, 1",
-            "35, BLACK, 1", "35, WHITE, 1", "36, BLACK, 1", "36, WHITE, 1", "37, BLACK, 1", "37, WHITE, 1",
-            "38, BLACK, 1", "38, WHITE, 1", "39, BLACK, 1", "39, WHITE, 1", "40, BLACK, 1", "40, WHITE, 1",
-            "41, BLACK, 1", "41, WHITE, 1", "42, BLACK, 1", "42, WHITE, 1", "43, BLACK, 1", "43, WHITE, 1",
-            "44, BLACK, 1", "44, WHITE, 1", "45, BLACK, 1", "45, WHITE, 1", "46, BLACK, 1", "46, WHITE, 1",
-            "47, BLACK, 1", "47, WHITE, 1", "48, BLACK, 2", "48, WHITE, 1", "49, BLACK, 2", "49, WHITE, 1",
-            "50, BLACK, 2", "50, WHITE, 1", "51, BLACK, 2", "51, WHITE, 1", "52, BLACK, 2", "52, WHITE, 1",
-            "53, BLACK, 2", "53, WHITE, 1", "54, BLACK, 2", "54, WHITE, 1", "55, BLACK, 2", "55, WHITE, 1" })
+    @CsvSource({ "16, BLACK, 1", "16, WHITE, 2", "17, BLACK, 1", "17, WHITE, 2", "18, BLACK, 1", "18, WHITE, 2",
+            "19, BLACK, 1", "19, WHITE, 2", "20, BLACK, 1", "20, WHITE, 2", "21, BLACK, 1", "21, WHITE, 2",
+            "22, BLACK, 1", "22, WHITE, 2", "23, BLACK, 1", "23, WHITE, 2", "32, BLACK, 1", "32, WHITE, 1",
+            "33, BLACK, 1", "33, WHITE, 1", "34, BLACK, 1", "34, WHITE, 1", "35, BLACK, 1", "35, WHITE, 1",
+            "36, BLACK, 1", "36, WHITE, 1", "37, BLACK, 1", "37, WHITE, 1", "38, BLACK, 1", "38, WHITE, 1",
+            "39, BLACK, 1", "39, WHITE, 1", "48, BLACK, 1", "48, WHITE, 1", "49, BLACK, 1", "49, WHITE, 1",
+            "50, BLACK, 1", "50, WHITE, 1", "51, BLACK, 1", "51, WHITE, 1", "52, BLACK, 1", "52, WHITE, 1",
+            "53, BLACK, 1", "53, WHITE, 1", "54, BLACK, 1", "54, WHITE, 1", "55, BLACK, 1", "55, WHITE, 1",
+            "64, BLACK, 1", "64, WHITE, 1", "65, BLACK, 1", "65, WHITE, 1", "66, BLACK, 1", "66, WHITE, 1",
+            "67, BLACK, 1", "67, WHITE, 1", "68, BLACK, 1", "68, WHITE, 1", "69, BLACK, 1", "69, WHITE, 1",
+            "70, BLACK, 1", "70, WHITE, 1", "71, BLACK, 1", "71, WHITE, 1", "80, BLACK, 1", "80, WHITE, 1",
+            "81, BLACK, 1", "81, WHITE, 1", "82, BLACK, 1", "82, WHITE, 1", "83, BLACK, 1", "83, WHITE, 1",
+            "84, BLACK, 1", "84, WHITE, 1", "85, BLACK, 1", "85, WHITE, 1", "86, BLACK, 1", "86, WHITE, 1",
+            "87, BLACK, 1", "87, WHITE, 1", "96, BLACK, 2", "96, WHITE, 1", "97, BLACK, 2", "97, WHITE, 1",
+            "98, BLACK, 2", "98, WHITE, 1", "99, BLACK, 2", "99, WHITE, 1", "100, BLACK, 2", "100, WHITE, 1",
+            "101, BLACK, 2", "101, WHITE, 1", "102, BLACK, 2", "102, WHITE, 1", "103, BLACK, 2", "103, WHITE, 1" })
     public void numberOfLegalMovesPerTile(
             @ConvertWith(TileCoordinateConverter.class) TileCoordinate tileCoordinate, Color color, int size) {
         Pawn pawn = assertDoesNotThrow(() -> new Pawn(color));

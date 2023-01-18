@@ -32,6 +32,6 @@ public class RookTest {
     }
 
     static IntStream provideAllCoordinates() {
-        return IntStream.range(0, 64);
+        return IntStream.range(0, TileCoordinate.LENGTH).filter(n -> (n & TileCoordinate.MASK) == 0);
     }
 }

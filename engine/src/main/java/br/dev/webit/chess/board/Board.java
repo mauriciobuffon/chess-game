@@ -9,25 +9,27 @@ import java.util.Objects;
 
 public class Board {
 
-    private final Map<TileCoordinate, Square> tiles;
+    private final Map<TileCoordinate, Square> boardcard;
     private final Map<Piece, Square> pieces;
     private final List<Move> moves;
 
     public Board() {
-        Map<TileCoordinate, Square> array = new HashMap<>(128);
+        Map<TileCoordinate, Square> array = new HashMap<>(TileCoordinate.LENGTH * 2);
 
         try {
-            for (int i = 0; i < 64; i++) {
-                TileCoordinate coordinate = TileCoordinate.of(i);
-                Square tile = new SquareImpl(coordinate, null);
-                array.put(coordinate, tile);
+            for (int i = 0; i < TileCoordinate.LENGTH; i++) {
+                if ((i & TileCoordinate.MASK) == 0) {
+                    TileCoordinate coordinate = TileCoordinate.of(i);
+                    Square square = new SquareImpl(coordinate, null);
+                    array.put(coordinate, square);
+                }
             }
         } catch (InvalidTileCoordinateException ex) {
             throw new RuntimeException(ex);
         }
 
-        tiles = Map.copyOf(array);
-        pieces = new HashMap<>(64);
+        boardcard = Map.copyOf(array);
+        pieces = new HashMap<>(TileCoordinate.LENGTH);
         moves = new ArrayList<>();
     }
 
@@ -38,30 +40,29 @@ public class Board {
         for (Entry<TileCoordinate, Piece> entry : config.values().entrySet()) {
             Piece piece = entry.getValue();
             if (null != piece) {
-                SquareImpl tile = (SquareImpl) getTile(entry.getKey());
-                tile.setPiece(piece);
-                pieces.put(piece, tile);
+                SquareImpl square = (SquareImpl) getSquare(entry.getKey());
+                square.setPiece(piece);
+                pieces.put(piece, square);
             }
         }
     }
 
-    public Square getTile(TileCoordinate coordinate) {
-        return tiles.get(Objects.requireNonNull(coordinate));
+    public Square getSquare(TileCoordinate coordinate) {
+        return boardcard.get(Objects.requireNonNull(coordinate));
     }
 
-    public Square getTile(Piece piece) {
-        return pieces.get(Objects.requireNonNull(piece));
+    public TileCoordinate getCoordinate(Piece piece) {
+        return pieces.get(Objects.requireNonNull(piece)).getCoordinate();
     }
 
     public void executeMove(Move move) {
         // TODO: work in progress
         final Piece piece = move.getPiece();
-        final TileCoordinate origin = getTile(piece).getCoordinate();
+        final TileCoordinate origin = getCoordinate(piece);
         final TileCoordinate destination = move.getDestination();
 
         // tiles.put(origin, Tile.create(origin, null));
         // tiles.put(destination, Tile.create(destination, piece.move(destination)));
-
         moves.add(move);
     }
 }

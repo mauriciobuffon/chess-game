@@ -10,7 +10,6 @@ import br.dev.webit.chess.board.Color;
 import br.dev.webit.chess.board.InvalidTileCoordinateException;
 import br.dev.webit.chess.board.Move;
 import br.dev.webit.chess.board.Piece;
-import br.dev.webit.chess.board.Square;
 import br.dev.webit.chess.board.TileCoordinate;
 
 public class Pawn extends Piece {
@@ -25,21 +24,20 @@ public class Pawn extends Piece {
 
         final int direction = Color.BLACK.equals(this.getColor()) ? -1 : 1;
 
-        final Square tile = board.getTile(this);
-        final TileCoordinate origin = tile.getCoordinate();
+        final TileCoordinate origin = board.getCoordinate(this);
         TileCoordinate destination;
         Optional<Piece> piece;
 
         try {
-            destination = origin.move(0, 1 * direction);
-            piece = board.getTile(destination).getPiece();
+            destination = origin.move(16 * direction);
+            piece = board.getSquare(destination).getPiece();
 
             if (piece.isEmpty()) {
                 legalMoves.add(new Move(this, destination));
 
-                if (tile.isSecondRank()) {
-                    destination = origin.move(0, 2 * direction);
-                    piece = board.getTile(destination).getPiece();
+                if ((direction == 1 ? origin.getRank() : 9 - origin.getRank()) == 2) {
+                    destination = origin.move(32 * direction);
+                    piece = board.getSquare(destination).getPiece();
 
                     if (piece.isEmpty()) {
                         legalMoves.add(new Move(this, destination));
@@ -48,9 +46,9 @@ public class Pawn extends Piece {
             }
 
             // possible capturing moves
-            for (int[] offset : new int[][] { { -1, +1 }, { +1, +1 } }) {
-                destination = origin.move(offset[0], offset[1] * direction);
-                piece = board.getTile(destination).getPiece();
+            for (int offset : new int[] { 15, 17 }) {
+                destination = origin.move(offset * direction);
+                piece = board.getSquare(destination).getPiece();
 
                 if (piece.isPresent() && !this.getColor().equals(piece.get().getColor())) {
                     legalMoves.add(new Move(this, destination));

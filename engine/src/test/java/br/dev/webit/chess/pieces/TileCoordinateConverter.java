@@ -22,7 +22,7 @@ public class TileCoordinateConverter implements ArgumentConverter {
         }
 
         try {
-            Integer value = Integer.class.cast(source);
+            int value = Integer.class.cast(source);
             try {
                 return TileCoordinate.of(value);
             } catch (InvalidTileCoordinateException ex) {
